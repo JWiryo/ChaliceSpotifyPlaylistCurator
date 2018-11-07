@@ -1,17 +1,17 @@
-from TokenHelper.getAccessToken import SpotifyToken
-from TokenHelper.refreshAccessToken import get_new_access_token
+from chalicelib.TokenHelper import getAccessToken
+from chalicelib.TokenHelper import refreshAccessToken
+from chalicelib.Constants import constants
 from spotipy.oauth2 import SpotifyOAuth
 
 import spotipy
-import Constants.constants as constants
 
 
 def add_top_tracks_to_playlist():
     # Setup Authentications
-    user = SpotifyToken()
+    user = getAccessToken.SpotifyToken()
     oauth = SpotifyOAuth(client_id=user.client_id, client_secret=user.client_secret,
                          redirect_uri=None)
-    access_token = get_new_access_token(oauth)
+    access_token = refreshAccessToken.get_new_access_token(oauth)
     sp = spotipy.Spotify(auth=access_token)
 
     # Get Current Playlist Tracks
@@ -36,6 +36,3 @@ def add_top_tracks_to_playlist():
         list_of_track_urls.append(track_url)
 
     sp.user_playlist_add_tracks(constants.USERNAME, constants.PLAYLIST_ID, list_of_track_urls)
-
-
-add_top_tracks_to_playlist()

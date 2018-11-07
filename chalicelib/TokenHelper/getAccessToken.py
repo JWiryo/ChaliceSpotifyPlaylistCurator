@@ -1,5 +1,4 @@
-import spotipy.util as util
-from Constants import constants
+from chalicelib.Constants import constants
 
 class SpotifyToken(object):
 
