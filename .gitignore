@@ -109,3 +109,6 @@ venv.bak/
 
 # chalice
 .chalice
+
+# Spotify
+.cache-jamesgiggs95

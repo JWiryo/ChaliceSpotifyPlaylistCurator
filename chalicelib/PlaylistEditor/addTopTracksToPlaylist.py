@@ -10,7 +10,7 @@ def add_top_tracks_to_playlist():
     # Setup Authentications
     user = getAccessToken.SpotifyToken()
     oauth = SpotifyOAuth(client_id=user.client_id, client_secret=user.client_secret,
-                         redirect_uri=None)
+                         redirect_uri=user.redirect_url)
     access_token = refreshAccessToken.get_new_access_token(oauth)
     sp = spotipy.Spotify(auth=access_token)
 
